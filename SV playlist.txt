@@ -1,0 +1,24 @@
+stack aditya verma--
+-------------
+stack pattern-
+as child questions has the same concept of the parent question
+
+parent questiions which will be covered in this playlist
+--
+1.nearest greater to the left
+2.nearest greater to the right
+3.nearest smaller to the left
+4.nearst smaller to the right
+
+5.stack space problem
+6.maximum area of a histogram
+7.max area of a rectangle in a binary matrix
+8.rain water trapping
+9.implementing a min stack
+10.implementing stack using heap
+11.the celebrity problem
+12.longest valid paranthesis
+13 iterative toh
+
+
+
