@@ -1,0 +1,27 @@
+
+#include<algorithm>
+#include<iostream>
+#include<vector>
+#include<map>
+#include<stack>
+using namespace std;
+//printing stack bottom to top using recursion
+void printstack(stack<int>stk){
+    if(stk.empty())return;
+    int x=stk.top();
+    stk.pop();
+    printstack(stk);
+    cout<<x<<" ";
+    //to pushing it back to the stack to make it the same as before
+    stk.push(x);
+}
+int main(){
+    stack<int>stk;
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++){
+        stk.push(i);
+    }
+    printstack(stk);
+}
+//one can use another to print bottom to top as push the top then push would reverse it
