@@ -1,0 +1,113 @@
+//using vector 
+//
+class MinStack {
+public:
+    vector< pair<int,int> > s;
+	
+    MinStack() { }
+    
+    void push(int val) {
+        if(s.empty())
+            s.push_back({val,val});
+        else
+            s.push_back({val,min(s.back().second,val)});    
+    }
+    
+    void pop() { s.pop_back(); }
+    
+    int top() { return s.back().first; }
+    
+    int getMin() { return s.back().second; }
+    
+    }
+    
+    
+    
+//using two stack
+
+class MinStack {
+public:
+    stack<int>s1;
+    stack<int>s2;
+    MinStack() {
+        
+    }
+    
+    void push(int val) {
+       s1.push(val);
+        if(s2.empty() || s2.top()>=val){
+            s2.push(val);
+        }
+    }
+    
+    void pop() {
+        if(s1.top()==s2.top()){
+            s2.pop();
+        }
+        s1.pop();
+    }
+    
+    int top() {
+        return s1.top();
+    }
+    
+    int getMin() {
+        return s2.top();
+    }
+};
+
+
+//a O(1) space solution
+
+
+
+---
+
+class MinStack {
+    stack<long long>stk;
+    long long mini;
+public:
+    MinStack() {
+        while(stk.empty()==false)stk.pop();
+        mini=INT_MAX;
+    }
+    
+    void push(int value) {
+        long long val=value;
+        if(stk.empty()){
+            stk.push(val);
+            mini=val;
+        }else{
+            if(val<mini){
+                stk.push(2*val*1ll-mini);//inserting the modified value it will always be less than mini if its modified 
+                mini=val;
+            }else{
+                stk.push(val);
+            }
+        }
+    }
+    
+    void pop() {
+        if(stk.empty())return;
+        long long y=stk.top();
+        stk.pop();
+        if(y<mini){
+            //we have roll back
+            mini=2*mini-y;//the previous minimum after removing the top of the stack
+        }
+    }
+    
+    int top() {
+        if(stk.empty())return -1;
+        long long y=stk.top();
+        if(y<mini){
+            return mini;
+        }
+        return y;
+    }
+    
+    int getMin() {
+        return mini;
+    }
+};
+//using encoding method to make it useful by using less space
