@@ -59,4 +59,34 @@ public:
        */
     }
 };
-//
+///////////////////////////////////
+int evalRPN(vector<string>& tokens) {
+        string s = tokens.back(); tokens.pop_back();
+        if(s != "+" && s != "-" && s != "*" && s != "/") return stoi(s);
+        
+        int r2 = evalRPN(tokens), r1 = evalRPN(tokens);
+        
+        if(s == "+") return r1 + r2;
+        if(s == "-") return r1 - r2;
+        if(s == "*") return r1 * r2;
+        if(s == "/") return r1 / r2;
+    }
+-------------------
+int evalRPN(vector<string>& tokens) {
+	int n = size(tokens) - 1;
+	return solve(tokens, n);
+}
+int solve(vector<string>& t, int &i) {
+	if(t[i] == "+" || t[i] == "-" || t[i] == "*" || t[i] == "/") {
+		char Operator = t[i][0];
+		int op1 = solve(t, --i), op2 = solve(t, --i);            
+		if(Operator == '+') return op2 + op1;
+		if(Operator == '-') return op2 - op1;
+		if(Operator == '/') return op2 / op1;
+		if(Operator == '*') return op2 * op1;
+	}
+	return stoi(t[i]);        
+}
+---------------------
+one can use vector and modifying it in itself,meaning using the string vector given in the program
+//means constant extra space used in it
